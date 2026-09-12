@@ -1,0 +1,62 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  --main-pink: #d85f7e; /* 濃いピンク：検索ボタン */
+  --soft-pink: #f7dde5; /* 淡いピンク背景 */
+  --pale-pink: #fff3f6; /* セクション背景 */
+  --rose-pink: #e9a6b8; /* ロゴ・装飾 */
+  --deep-rose: #b94a68; /* 見出し強調 */
+  --gold: #b88a3b; /* 医療機関監修バッジ */
+  --gold-light: #f8e8c8; /* バッジ背景 */
+  --text-main: #333333; /* メイン文字 */
+  --text-sub: #777777; /* サブ文字 */
+  --white: #ffffff;
+  --line: #f1d6dd;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-noto-serif-jp), var(--font-noto-sans-jp), sans-serif;
+  color: var(--text-main);
+  background: var(--white);
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Case grids: /cases + /search?type=cases — 1 col phone, 2 cols 640–820 (iPad Mini/Air), 3 cols ≥821 (iPad Pro / desktop). */
+.cases-listing-photo-grid {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+@media (min-width: 640px) and (max-width: 820px) {
+  .cases-listing-photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 821px) {
+  .cases-listing-photo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Global styles for select tags without custom appearance to fix right-side padding and native arrow overlap */
+select:not([class*="appearance-none"]) {
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="%239CA3AF" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m6 8 4 4 4-4"/></svg>');
+  background-size: 1.125rem 1.125rem;
+  background-position: right 0.875rem center;
+  background-repeat: no-repeat;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
